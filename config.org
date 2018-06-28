@@ -239,3 +239,13 @@
   (global-set-key (quote [f3]) 'find-config)
 #+END_SRC
 
+* Org
+** Org Bullets
+#+BEGIN_SRC emacs-lisp
+  (set-fontset-font t 'unicode "DejaVu Sans Mono" nil 'prepend)
+
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+#+END_SRC
