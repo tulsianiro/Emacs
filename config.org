@@ -1,0 +1,241 @@
+* Encoding
+#+BEGIN_SRC emacs-lisp
+(prefer-coding-system 'utf-8)
+#+END_SRC
+
+* Packages
+** Melpa Initialization
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+#+END_SRC
+
+** Auto-Download Use-Package
+#+BEGIN_SRC emacs-lisp
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+#+END_SRC
+
+** Which Key
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :ensure t
+    :init
+    (which-key-mode))
+#+END_SRC
+
+* Theme
+** Auto-Download + Load Spacemacs
+#+BEGIN_SRC emacs-lisp
+  (unless (package-installed-p 'spacemacs-theme)
+    (package-refresh-contents)
+    (package-install 'spacemacs-theme))
+
+  (load-theme 'spacemacs-dark t)
+#+END_SRC
+
+** Font
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'default-frame-alist '(font . "Liberation Mono-14"))
+#+END_SRC
+
+* Basic Settings
+** Disable Yes or No Prompts
+#+BEGIN_SRC emacs-lisp
+(defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+** Start Fullscreen
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+#+END_SRC
+
+** Scroll Line by Line
+#+BEGIN_SRC emacs-lisp
+(setq scroll-conservatively 100)
+#+END_SRC
+
+** Remove Bell Sound
+#+BEGIN_SRC emacs-lisp
+(setq ring-bell-function 'ignore)
+#+END_SRC
+
+** Highlight Current Line
+#+BEGIN_SRC emacs-lisp
+  (when window-system
+    (global-hl-line-mode t))
+#+END_SRC
+
+** No Line Truncation
+#+BEGIN_SRC emacs-lisp
+(setq-default truncate-lines t)
+#+END_SRC
+
+** No Backup + Autosave
+#+BEGIN_SRC emacs-lisp
+(setq backup-inhibited t) 
+(setq auto-save-default nil)
+#+END_SRC
+
+** Mac OSX Settings
+#+BEGIN_SRC emacs-lisp 
+  (if (eq system-type 'darwin)
+      (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier 'super))
+#+END_SRC
+
+** Remove Scroll Bar, Menu Bar, Tool Bar, Startup Screen
+#+BEGIN_SRC emacs-lisp
+  (scroll-bar-mode -1) (menu-bar-mode -1) (tool-bar-mode 0)
+  (setq inhibit-startup-message t)
+  (setq initial-scratch-message nil)
+#+END_SRC
+
+* Terminal
+** Keybinding 
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<M-return>") 'eshell)
+#+END_SRC
+
+** Fixing Emacs Shell Clear Function
+#+BEGIN_SRC emacs-lisp
+  (defun rohan-eshell-clear ()
+    "clear the eshell buffer"
+    (interactive)
+    (let ((inhibit-read-only t)) (erase-buffer)))
+
+  (advice-add 'eshell/clear :override
+	      'rohan-eshell-clear)
+#+END_SRC
+
+** Removing Greeting Message in Emacs Shell
+#+BEGIN_SRC emacs-lisp
+(setq eshell-banner-message "")
+#+END_SRC
+
+** Changing Prompt Colors in Emacs Shell
+#+BEGIN_SRC emacs-lisp
+  (setq eshell-prompt-function
+	(lambda nil (concat
+		     (propertize (abbreviate-file-name(eshell/pwd))
+				 'face `(:weight bold :foreground "#ce537a"))
+		     (propertize " $ "
+				 'face `(:foreground "#b2b2b2")))))
+  (setq eshell-highlight-prompt nil)
+#+END_SRC
+
+* IDO
+** Enable IDO Mode
+#+BEGIN_SRC emacs-lisp
+  (setq ido-enable-flex-matching nil)
+  (setq ido-create-new-buffer 'always)
+  (setq ido-everywhere t)
+  (ido-mode 1)
+#+END_SRC
+
+** IDO Vertical 
+#+BEGIN_SRC emacs-lisp
+  (use-package ido-vertical-mode
+    :ensure t
+    :init
+    (ido-vertical-mode 1))
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+#+END_SRC
+
+** SMEX
+#+BEGIN_SRC emacs-lisp
+  (use-package smex
+    :ensure t
+    :init
+    (smex-initialize)
+    :bind
+    ("M-x" . smex))
+#+END_SRC
+
+** IDO for I-Menu
+#+BEGIN_SRC emacs-lisp
+  (defun ido-goto-symbol (&optional symbol-list)
+    "Refresh imenu and jump to a place in the buffer using Ido."
+    (interactive)
+    (unless (featurep 'imenu)
+      (require 'imenu nil t))
+    (cond
+     ((not symbol-list)
+      (let ((ido-mode ido-mode)
+	    (ido-enable-flex-matching
+	     (if (boundp 'ido-enable-flex-matching)
+		 ido-enable-flex-matching t))
+	    name-and-pos symbol-names position)
+	(unless ido-mode
+	  (ido-mode 1)
+	  (setq ido-enable-flex-matching t))
+	(while (progn
+		 (imenu--cleanup)
+		 (setq imenu--index-alist nil)
+		 (ido-goto-symbol (imenu--make-index-alist))
+		 (setq selected-symbol
+		       (ido-completing-read "Symbol? " symbol-names))
+		 (string= (car imenu--rescan-item) selected-symbol)))
+	(unless (and (boundp 'mark-active) mark-active)
+	  (push-mark nil t nil))
+	(setq position (cdr (assoc selected-symbol name-and-pos)))
+	(cond
+	 ((overlayp position)
+	  (goto-char (overlay-start position)))
+	 (t
+	  (goto-char position)))))
+     ((listp symbol-list)
+      (dolist (symbol symbol-list)
+	(let (name position)
+	  (cond
+	   ((and (listp symbol) (imenu--subalist-p symbol))
+	    (ido-goto-symbol symbol))
+	   ((listp symbol)
+	    (setq name (car symbol))
+	    (setq position (cdr symbol)))
+	   ((stringp symbol)
+	    (setq name symbol)
+	    (setq position
+		  (get-text-property 1 'org-imenu-marker symbol))))
+	  (unless (or (null position) (null name)
+		      (string= (car imenu--rescan-item) name))
+	    (add-to-list 'symbol-names name)
+	    (add-to-list 'name-and-pos (cons name position))))))))
+
+  (global-set-key (kbd "M-j") 'ido-goto-symbol)
+#+END_SRC
+
+** Switch Buffer Keybind
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
+#+END_SRC
+
+* Buffers
+** Enable I-Buffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x b") 'ibuffer)
+#+END_SRC
+
+** I-Buffer Expert
+#+BEGIN_SRC emacs-lisp
+  (setq ibuffer-expert t)
+#+END_SRC
+
+* Window Splitting
+** Split Horizontally
+#+BEGIN_SRC emacs-lisp
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
+#+END_SRC
+
+* Open Config
+#+BEGIN_SRC emacs-lisp
+  (defun find-config ()
+    (interactive)
+    (find-file (expand-file-name "~/.emacs.d/config.org")))
+  (global-set-key (quote [f3]) 'find-config)
+#+END_SRC
+
