@@ -109,6 +109,11 @@
   (setq initial-scratch-message nil)
 #+END_SRC
 
+** Subword
+#+BEGIN_SRC emacs-lisp
+(global-subword-mode 1)
+#+END_SRC
+
 * Terminal
 ** Keybinding 
 #+BEGIN_SRC emacs-lisp
@@ -280,10 +285,45 @@
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
 #+END_SRC
 
-* Other Window
+* Find File/Buffer + Kill
 ** Find File and Buffer
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x F") 'find-file-other-window)
   (global-set-key (kbd "C-x B") 'ido-switch-buffer-other-window)
+#+END_SRC
+
+** Kill
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-x C-k") 'kill-this-buffer)
+
+(defun other-window-kill-buffer ()
+  (interactive)
+  (let ((win-curr (selected-window))
+        (win-other (next-window)))
+    (select-window win-other)
+    (kill-this-buffer)
+    (select-window win-curr)))
+
+(global-set-key (kbd "C-x K") 'other-window-kill-buffer)
+#+END_SRC
+
+* Convenient Function
+** Kill Whole Word
+#+BEGIN_SRC emacs-lisp
+  (defun kill-whole-word ()
+    (interactive)
+    (backward-word)
+    (kill-word 1))
+  (global-set-key (kbd "C-c w") 'kill-whole-word)
+#+END_SRC
+
+** Copy Line
+#+BEGIN_SRC emacs-lisp
+  (defun copy-whole-line ()
+    (interactive)
+    (kill-new
+     (buffer-substring
+      (point-at-bol)
+      (point-at-eol))))
 #+END_SRC
 
