@@ -30,9 +30,12 @@
 * Theme
 ** Auto-Download + Load Spacemacs
 #+BEGIN_SRC emacs-lisp
-  (unless (package-installed-p 'spacemacs-theme)
-    (package-refresh-contents)
-    (package-install 'spacemacs-theme))
+  (use-package spacemacs-theme
+    :ensure t
+    :defer  t)
+  (use-package solarized-theme
+    :ensure t
+    :defer  t)
 
   (load-theme 'spacemacs-dark t)
 #+END_SRC
