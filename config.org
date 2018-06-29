@@ -275,3 +275,9 @@
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
 #+END_SRC
 
+* Other Window
+** Find File and Buffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-F") 'find-file-other-window)
+  (global-set-key (kbd "C-x C-B") 'ido-switch-buffer-other-window)
+#+END_SRC
