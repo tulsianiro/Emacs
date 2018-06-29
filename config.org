@@ -325,5 +325,6 @@
      (buffer-substring
       (point-at-bol)
       (point-at-eol))))
+  (global-set-key (kbd "C-c l") 'copy-whole-line)
 #+END_SRC
 
