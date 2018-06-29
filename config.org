@@ -328,3 +328,12 @@
   (global-set-key (kbd "C-c l") 'copy-whole-line)
 #+END_SRC
 
+** Join Line
+#+BEGIN_SRC emacs-lisp
+  (defun rohan-join-line ()
+    (interactive)
+    (save-excursion
+      (next-line)
+      (join-line)))
+  (global-set-key (kbd "C-c j") 'rohan-join-line)
+#+END_SRC
