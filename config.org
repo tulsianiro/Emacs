@@ -40,10 +40,14 @@
 #+BEGIN_SRC emacs-lisp
   (use-package spacemacs-theme
     :ensure t
-    :defer  t)
+    :defer  t
+    :init
+    (disable-theme 'spacemacs-dark))
   (use-package solarized-theme
     :ensure t
-    :defer  t)
+    :defer  t
+    :init
+    (disable-theme 'solarized-dark))
 
   (load-theme 'spacemacs-dark t)
 #+END_SRC
