@@ -253,6 +253,11 @@
     (interactive)
     (find-file (expand-file-name "~/.emacs.d/config.org")))
   (global-set-key (kbd "C-c e") 'config-edit)
+
+(defun config-edit-other-window ()
+    (interactive)
+    (find-file-other-window (expand-file-name "~/.emacs.d/config.org")))
+  (global-set-key (kbd "C-c E") 'config-edit-other-window)
 #+END_SRC
 
 ** Reload Config
