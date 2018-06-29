@@ -243,7 +243,7 @@
 ** Split Horizontally
 #+BEGIN_SRC emacs-lisp
 (setq split-height-threshold nil)
-(setq split-width-threshold 0)
+(setq split-width-threshold 100)
 #+END_SRC
 
 * Open/Reload Config
