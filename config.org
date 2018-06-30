@@ -337,3 +337,14 @@
       (join-line)))
   (global-set-key (kbd "C-c j") 'rohan-join-line)
 #+END_SRC
+
+* Abbrev
+#+BEGIN_SRC emacs-lisp
+  (setq dabbrev-case-replace t)
+  (setq dabbrev-case-fold-search t)
+  (setq dabbrev-upcase-means-case-search t)
+
+  (define-key global-map "\t" 'dabbrev-expand)
+  (define-key global-map [S-tab] 'indent-for-tab-command)
+#+END_SRC
+
