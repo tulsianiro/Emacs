@@ -47,7 +47,10 @@
 
 ** Font
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist '(font . "Source Code Pro-12.5"))
+  (if (eq system-type 'windows-nt)
+      (add-to-list 'default-frame-alist '(font . "Consolas-14")))
+  (if (eq system-type 'darwin)
+      (add-to-list 'default-frame-alist '(font . "Source Code Pro-12.5")))
 #+END_SRC
 
 * Basic Settings
