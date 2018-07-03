@@ -38,11 +38,11 @@
 * Theme
 ** Auto-Download + Load Spacemacs
 #+BEGIN_SRC emacs-lisp
-  (use-package atom-one-dark-theme
+  (use-package monokai-theme
     :ensure t
     :defer  t
     :init
-    (load-theme 'atom-one-dark t))
+    (load-theme 'monokai t))
 #+END_SRC
 
 ** Font
