@@ -38,11 +38,11 @@
 * Theme
 ** Auto-Download + Load Spacemacs
 #+BEGIN_SRC emacs-lisp
-  (use-package monokai-theme
+  (use-package atom-one-dark-theme
     :ensure t
     :defer  t
     :init
-    (load-theme 'monokai t))
+    (load-theme 'atom-one-dark t))
 #+END_SRC
 
 ** Font
@@ -351,4 +351,26 @@
     (if (eq system-type 'darwin)
 	(setq powerline-image-apple-rgb t))
     (spaceline-spacemacs-theme))
+#+END_SRC
+
+** Colored & Shortened VC
+#+BEGIN_SRC emacs-lisp
+  (make-face 'vc-green)
+  (modify-face 'vc-green "Green" nil nil nil nil nil nil nil)
+
+  (make-face 'vc-red)
+  (modify-face 'vc-red "Red" nil nil nil nil nil nil nil)
+
+  (make-face 'vc-yellow)
+  (modify-face 'vc-yellow "Yellow" nil nil nil nil nil nil nil)
+
+  (eval-after-load "vc-hooks"
+    '(defadvice vc-mode-line (after sml/after-vc-mode-line-advice () activate)
+       (when (stringp vc-mode)
+	 (let ((noback (replace-regexp-in-string (format "^ %s" (vc-backend buffer-file-name)) " " vc-mode)))
+	   (setq vc-mode
+		 (propertize noback
+			     'face (cond ((string-match "^ -" noback)    'vc-green)
+					 ((string-match "^ [:@]" noback) 'vc-yellow)
+					 ((string-match "^ [!\\?]" noback) 'vc-red))))))))
 #+END_SRC
