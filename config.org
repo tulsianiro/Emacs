@@ -38,18 +38,11 @@
 * Theme
 ** Auto-Download + Load Spacemacs
 #+BEGIN_SRC emacs-lisp
-  (use-package spacemacs-theme
+  (use-package monokai-theme
     :ensure t
     :defer  t
     :init
-    (disable-theme 'spacemacs-dark))
-  (use-package solarized-theme
-    :ensure t
-    :defer  t
-    :init
-    (disable-theme 'solarized-dark))
-
-  (load-theme 'spacemacs-dark t)
+    (load-theme 'monokai t))
 #+END_SRC
 
 ** Font
@@ -348,3 +341,14 @@
   (define-key global-map [S-tab] 'indent-for-tab-command)
 #+END_SRC
 
+* Modeline
+** Spaceline
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline
+    :ensure t
+    :config
+    (require 'spaceline-config)
+    (if (eq system-type 'darwin)
+	(setq powerline-image-apple-rgb t))
+    (spaceline-spacemacs-theme))
+#+END_SRC
