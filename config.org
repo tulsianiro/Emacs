@@ -47,7 +47,7 @@
 
 ** Font
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist '(font . "Liberation Mono-14"))
+  (add-to-list 'default-frame-alist '(font . "Source Code Pro-12.5"))
 #+END_SRC
 
 * Basic Settings
@@ -374,5 +374,11 @@
 			     'face (cond ((string-match "^ -" noback)    'vc-green)
 					 ((string-match "^ [:@]" noback) 'vc-yellow)
 					 ((string-match "^ [!\\?]" noback) 'vc-red))))))))
+#+END_SRC
+
+** Get Rid of Extra C++ Modeline Stuff
+#+BEGIN_SRC emacs-lisp
+(with-eval-after-load "cc-cmds"
+  (defalias 'c-update-modeline #'ignore))
 #+END_SRC
 
