@@ -344,19 +344,20 @@
 * Modeline
 ** Spaceline
 #+BEGIN_SRC emacs-lisp
-  (use-package spaceline
-    :ensure t
-    :config
-    (require 'spaceline-config)
-    (if (eq system-type 'darwin)
-	(setq powerline-image-apple-rgb t))
-    (spaceline-spacemacs-theme))
+    (use-package spaceline
+      :ensure t
+      :config
+      (require 'spaceline-config)
+      (if (eq system-type 'darwin)
+	  (setq powerline-image-apple-rgb t))
+      (spaceline-spacemacs-theme)
+      (spaceline-toggle-minor-modes-off))
 #+END_SRC
 
 ** Colored & Shortened VC
 #+BEGIN_SRC emacs-lisp
   (make-face 'vc-green)
-  (modify-face 'vc-green "Green" nil nil nil nil nil nil nil)
+  (modify-face 'vc-green "light green" nil nil nil nil nil nil nil)
 
   (make-face 'vc-red)
   (modify-face 'vc-red "Red" nil nil nil nil nil nil nil)
@@ -374,3 +375,4 @@
 					 ((string-match "^ [:@]" noback) 'vc-yellow)
 					 ((string-match "^ [!\\?]" noback) 'vc-red))))))))
 #+END_SRC
+
