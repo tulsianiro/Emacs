@@ -433,8 +433,7 @@
     (if (eq system-type 'darwin)
 	(setq powerline-image-apple-rgb t))
     (spaceline-spacemacs-theme)
-    (spaceline-toggle-minor-modes-off)
-    (powerline-reset))
+    (spaceline-toggle-minor-modes-off))
 #+END_SRC
 
 ** Colored & Shortened VC
