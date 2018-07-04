@@ -38,78 +38,78 @@
 * Theme
 ** Auto-Download + Load Spacemacs
 #+BEGIN_SRC emacs-lisp
-    (set-foreground-color "burlywood3")
-    (set-background-color "#161616")
-    (set-cursor-color "#40FF40")
+  (set-foreground-color "burlywood3")
+  (set-background-color "#161616")
+  (set-cursor-color "#40FF40")
 
-    (custom-set-faces
+  (custom-set-faces
 
-     '(org-level-1 ((t
-		     (:height 1.3 :foreground "#FD971F" :inherit
-			      (default)))))
-     '(org-level-2 ((t
-		     (:height 1.2 :foreground "#A6E22E" :inherit
-			      (default)))))
-     '(org-level-3 ((t
-		     (:height 1.15 :foreground "#66D9EF" :inherit
-			      (default)))))
+   '(org-level-1 ((t
+		   (:height 1.3 :foreground "#FD971F" :inherit
+			    (default)))))
+   '(org-level-2 ((t
+		   (:height 1.2 :foreground "#A6E22E" :inherit
+			    (default)))))
+   '(org-level-3 ((t
+		   (:height 1.15 :foreground "#66D9EF" :inherit
+			    (default)))))
 
-     '(mode-line ((t (:box
-		      (:line-width 1 :color "#64645E" :style unspecified)
-		      :foreground "#F8F8F0" :background "#49483E"))))
-     '(mode-line-inactive ((t (:box
-			       (:line-width 1 :color "#64645E" :style unspecified)
-			       :foreground "#75715E" :background "#272822"))))
+   '(mode-line ((t (:box
+		    (:line-width 1 :color "#64645E" :style unspecified)
+		    :foreground "#F8F8F0" :background "#49483E"))))
+   '(mode-line-inactive ((t (:box
+			     (:line-width 1 :color "#64645E" :style unspecified)
+			     :foreground "#75715E" :background "#272822"))))
 
-     '(mode-line-buffer-id ((t (:weight bold :foreground "#A6E22E"))))
-     '(mode-line-buffer-id-inactive ((t (:weight bold :foreground "#A6E22E"))))
+   '(mode-line-buffer-id ((t (:weight bold :foreground "#A6E22E"))))
+   '(mode-line-buffer-id-inactive ((t (:weight bold :foreground "#A6E22E"))))
 
-     '(powerline-active0 ((t (:inherit
-			      (mode-line)))))
-     '(powerline-active1 ((t (:background "#35331D"))))
-     '(powerline-active2 ((t (:background "#272822"))))
+   '(powerline-active0 ((t (:inherit
+			    (mode-line)))))
+   '(powerline-active1 ((t (:background "#35331D"))))
+   '(powerline-active2 ((t (:background "#272822"))))
 
-     '(powerline-inactive0 ((t (:inherit
-				(mode-line-inactive)))))
-     '(powerline-inactive1 ((t (:background "#35331D"))))
-     '(powerline-inactive2 ((t (:background "#272822"))))
+   '(powerline-inactive0 ((t (:inherit
+			      (mode-line-inactive)))))
+   '(powerline-inactive1 ((t (:background "#35331D"))))
+   '(powerline-inactive2 ((t (:background "#272822"))))
 
-     '(org-block-begin-line ((t (:foreground "white" :background "#35331D"))))
-     '(org-block-end-line ((t (:foreground "white" :background "#35331D"))))
+   '(org-block-begin-line ((t (:foreground "white" :background "#35331D"))))
+   '(org-block-end-line ((t (:foreground "white" :background "#35331D"))))
 
-     '(ido-first-match ((t (:weight normal :foreground "#E6DB74"))))
-     '(ido-incomplete-regexp ((t (:weight bold :foreground "#F92672"))))
-     '(ido-indicator ((t (:width condensed :foreground "#272822"
-				 :background "#F92672"))))
-     '(ido-only-match ((t (:weight normal :foreground "black"
-				   :background "DarkGoldenrod3"))))
-     '(ido-subdir ((t (:foreground "#66D9EF"))))
-     '(ido-vertical-first-match-face ((t (:inherit (ido-first-match)))))
-     '(ido-vertical-match-face ((t (:underline
-				    (:color foreground-color :style line)
-				    :bold t :inherit
-				    (font-lock-variable-name-face)))))
-     '(ido-vertical-only-match-face ((t (:inherit (ido-only-match)))))
-     '(ido-virtual ((t (:foreground "#A1EFE4"))))
+   '(compilation-mode-line-exit ((t (:weight bold :foreground "light green"))))
+   '(compilation-mode-line-fail ((t (:weight bold :foreground "indian red"))))
+   '(compilation-mode-line-run ((t (:weight bold :foreground "yellow"))))
 
-     '(compilation-mode-line-exit ((t (:weight bold :foreground "#002b36"))))
-     '(compilation-mode-line-fail ((t (:weight bold :foreground "#002b36"))))
-     '(compilation-mode-line-run ((t (:weight bold :foreground "#002b36")))))
+   '(ido-first-match ((t (:weight normal :foreground "#E6DB74"))))
+   '(ido-incomplete-regexp ((t (:weight bold :foreground "#F92672"))))
+   '(ido-indicator ((t (:width condensed :foreground "#272822"
+			       :background "#F92672"))))
+   '(ido-only-match ((t (:weight normal :foreground "black"
+				 :background "DarkGoldenrod3"))))
+   '(ido-subdir ((t (:foreground "#66D9EF"))))
+   '(ido-vertical-first-match-face ((t (:inherit (ido-first-match)))))
+   '(ido-vertical-match-face ((t (:underline
+				  (:color foreground-color :style line)
+				  :bold t :inherit
+				  (font-lock-variable-name-face)))))
+   '(ido-vertical-only-match-face ((t (:inherit (ido-only-match)))))
+   '(ido-virtual ((t (:foreground "#A1EFE4")))))
 
 
-    (set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
-    (set-face-attribute 'font-lock-comment-face nil :foreground "gray50")
-    (set-face-attribute 'font-lock-constant-face nil :foreground "olive drab")
-    (set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
-    (set-face-attribute 'font-lock-function-name-face nil :foreground "burlywood3")
-    (set-face-attribute 'font-lock-keyword-face nil :foreground "DarkGoldenrod3")
-    (set-face-attribute 'font-lock-string-face nil :foreground "olive drab")
-    (set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
-    (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
-    (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
-    (set-face-attribute 'org-block nil :foreground "burlywood3"
-			:background "black")
-    (set-face-attribute 'secondary-selection nil :background "black")
+  (set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
+  (set-face-attribute 'font-lock-comment-face nil :foreground "gray50")
+  (set-face-attribute 'font-lock-constant-face nil :foreground "olive drab")
+  (set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
+  (set-face-attribute 'font-lock-function-name-face nil :foreground "burlywood3")
+  (set-face-attribute 'font-lock-keyword-face nil :foreground "DarkGoldenrod3")
+  (set-face-attribute 'font-lock-string-face nil :foreground "olive drab")
+  (set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
+  (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
+  (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
+  (set-face-attribute 'org-block nil :foreground "burlywood3"
+		      :background "black")
+  (set-face-attribute 'secondary-selection nil :background "black")
 
 
   (set-face-attribute 'isearch nil :background "DarkGoldenrod3" :foreground "black")
@@ -138,6 +138,7 @@
   (modify-face 'font-lock-fixme-face "firebrick2" nil nil t nil t nil nil)
   (modify-face 'font-lock-note-face "lime green" nil nil t nil t nil nil)
 #+END_SRC
+
 * Basic Settings
 ** Disable Yes or No Prompts
 #+BEGIN_SRC emacs-lisp
@@ -187,6 +188,11 @@
 ** Subword
 #+BEGIN_SRC emacs-lisp
 (global-subword-mode 1)
+#+END_SRC
+
+** Transient Mark Mode Off
+#+BEGIN_SRC emacs-lisp
+(transient-mark-mode -1)
 #+END_SRC
 
 * Terminal
@@ -421,6 +427,7 @@
 
   (define-key global-map "\t" 'dabbrev-expand)
   (define-key global-map [S-tab] 'indent-for-tab-command)
+  (define-key global-map [C-tab] 'indent-region)
 #+END_SRC
 
 * Modeline
