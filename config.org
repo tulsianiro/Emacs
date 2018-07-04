@@ -36,7 +36,7 @@
 #+END_SRC
 
 * Theme
-** Auto-Download + Load Spacemacs
+** Custom Theme
 #+BEGIN_SRC emacs-lisp
   (set-foreground-color "burlywood3")
   (set-background-color "#161616")
@@ -433,14 +433,15 @@
 * Modeline
 ** Spaceline
 #+BEGIN_SRC emacs-lisp
-  (use-package spaceline
-    :ensure t
-    :config
-    (require 'spaceline-config)
-    (if (eq system-type 'darwin)
-	(setq powerline-image-apple-rgb t))
-    (spaceline-spacemacs-theme)
-    (spaceline-toggle-minor-modes-off))
+    (use-package spaceline
+      :ensure t
+      :config
+      (require 'spaceline-config)
+      (if (eq system-type 'darwin)
+	  (setq powerline-image-apple-rgb t))
+      (spaceline-spacemacs-theme)
+      (spaceline-toggle-minor-modes-off)
+      (spaceline-toggle-selection-info-off))
 #+END_SRC
 
 ** Colored & Shortened VC
