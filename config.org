@@ -43,6 +43,12 @@
   (set-cursor-color "#40FF40")
 
   (custom-set-faces
+   '(show-paren-match ((t (:background "DarkSlateGray"))))
+ 
+   '(avy-lead-face-0    ((t (:background "DarkGoldenrod3" :foreground "black"))))
+   '(avy-lead-face-1    ((t (:background "firebrick3" :foreground "black"))))
+   '(avy-lead-face-2    ((t (:background "dark orange" :foreground "black"))))
+   '(avy-lead-face      ((t (:background "olive drab" :foreground "black"))))
 
    '(org-level-1 ((t
 		   (:height 1.3 :foreground "#FD971F" :inherit
