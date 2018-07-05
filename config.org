@@ -43,6 +43,14 @@
     (browse-kill-ring-default-keybindings))
 #+END_SRC
 
+** Swiper
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper
+    :ensure t
+    :bind
+    ("C-s" . swiper))
+#+END_SRC
+
 * Theme
 ** Custom Theme
 #+BEGIN_SRC emacs-lisp
