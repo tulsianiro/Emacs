@@ -265,15 +265,26 @@
 ** Changing Prompt Colors in Emacs Shell
 #+BEGIN_SRC emacs-lisp
   (setq eshell-prompt-function
-	(lambda nil (concat
-                     "\n"
-		     (propertize (abbreviate-file-name(eshell/pwd))
-				 'face `(:underline t :foreground "goldenrod"))
-		     (propertize " $"
-				 'face `(:family "DejaVu Sans Mono" :foreground "#F2F2F2"))
-		     (propertize " "
-				 'face `(:foreground "#F2F2F2")))))
-  (setq eshell-highlight-prompt nil)
+	(lambda () (concat
+		    "\n"
+		    (propertize "┌─["
+				'face `(:foreground "green"))
+		    (propertize (user-login-name)
+				'face `(:foreground "DarkGoldenrod3"))
+		    (propertize "]──["
+				'face `(:foreground "green"))
+		    (propertize (format-time-string "%H:%M" (current-time))
+				'face `(:foreground "olive drab"))
+		    (propertize "]──["
+				'face `(:foreground "green"))
+		    (propertize (concat (abbreviate-file-name(eshell/pwd))) 'face `(:foreground "white"))
+		    (propertize "]\n"
+				'face `(:foreground "green"))
+		    (propertize "└─>"
+				'face `(:foreground "green"))
+		    (propertize (if (= (user-uid) 0) " # " " $ ")
+				'face `(:foreground "green")))))
+
 #+END_SRC
 
 * IDO
