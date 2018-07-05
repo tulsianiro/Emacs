@@ -268,10 +268,10 @@
 	(lambda nil (concat
 		     (propertize (abbreviate-file-name(eshell/pwd))
 				 'face `(:weight bold :foreground "goldenrod"))
-		     (propertize " >>"
-				 'face `(:foreground "#A6E22E"))
+		     (propertize " $"
+				 'face `(:family "DejaVu Sans Mono" :foreground "#F2F2F2"))
 		     (propertize " "
-				 'face `(:foreground "#D2D2D2")))))
+				 'face `(:foreground "#F2F2F2")))))
   (setq eshell-highlight-prompt nil)
 #+END_SRC
 
