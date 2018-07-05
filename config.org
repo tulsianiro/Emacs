@@ -51,13 +51,32 @@
   (set-cursor-color "#40FF40")
 
   (custom-set-faces
-   '(show-paren-match ((t (:background "DarkSlateGray"))))
-   '(highlight ((t (:background "dark slate gray"))))
- 
+   '(show-paren-match ((t (:background "midnight blue"))))
+   '(highlight ((t (:background "midnight blue"))))
+
    '(avy-lead-face-0    ((t (:background "DarkGoldenrod3" :foreground "black"))))
    '(avy-lead-face-1    ((t (:background "firebrick3" :foreground "black"))))
    '(avy-lead-face-2    ((t (:background "dark orange" :foreground "black"))))
    '(avy-lead-face      ((t (:background "olive drab" :foreground "black"))))
+
+   '(ivy-current-match ((t (:background "midnight blue"))))
+   '(ivy-minibuffer-match-face-1 ((t (:foreground "black"
+						  :background "dark goldenrod3"))))
+   '(ivy-minibuffer-match-face-2 ((t (:foreground "black"
+						  :background "dark goldenrod3"))))
+   '(ivy-minibuffer-match-face-3 ((t (:foreground "black" 
+						  :background "dark goldenrod3"))))
+   '(ivy-minibuffer-match-face-4 ((t (:foreground "black"
+						  :background "dark goldenrod3"))))
+
+   '(swiper-match-face-1 ((t (:foreground "black"
+					  :background "dark goldenrod3"))))
+   '(swiper-match-face-2 ((t (:foreground "black"
+					  :background "dark goldenrod3"))))
+   '(swiper-match-face-3 ((t (:foreground "black"
+					  :background "dark goldenrod3"))))
+   '(swiper-match-face-4 ((t (:foreground "black"
+					  :background "dark goldenrod3"))))
 
    '(org-level-1 ((t
 		   (:height 1.3 :foreground "#FD971F" :inherit
@@ -128,7 +147,7 @@
 
 
   (set-face-attribute 'isearch nil :background "DarkGoldenrod3" :foreground "black")
-  (set-face-attribute 'lazy-highlight nil :background "dark slate gray")
+  (set-face-attribute 'lazy-highlight nil :background "midnight blue")
 #+END_SRC
 
 ** Font
