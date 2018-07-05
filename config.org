@@ -259,14 +259,14 @@
 
 ** Removing Greeting Message in Emacs Shell
 #+BEGIN_SRC emacs-lisp
-(setq eshell-banner-message "")
+(setq eshell-banner-message "Welcome to Your Shell, Rohan\n")
 #+END_SRC
 
 ** Changing Prompt Colors in Emacs Shell
 #+BEGIN_SRC emacs-lisp
   (setq eshell-prompt-function
 	(lambda nil (concat
-		     "Welcome to Your Shell, Rohan\n\n"
+                     "\n"
 		     (propertize (abbreviate-file-name(eshell/pwd))
 				 'face `(:underline t :foreground "goldenrod"))
 		     (propertize " $"
