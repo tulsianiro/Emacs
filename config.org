@@ -419,9 +419,12 @@
 #+BEGIN_SRC emacs-lisp
   (defun rohan-join-line ()
     (interactive)
-    (save-excursion
-      (next-line)
-      (join-line)))
+    (let ((inhibit-message t))
+      (save-excursion
+	(next-line)
+	(join-line))
+      (indent-region (line-beginning-position) (line-end-position))))
+
   (global-set-key (kbd "C-c j") 'rohan-join-line)
 #+END_SRC
 
