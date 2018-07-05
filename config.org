@@ -35,6 +35,14 @@
     ("M-s" . avy-goto-char))
 #+END_SRC
 
+** Browse Kill Ring
+#+BEGIN_SRC emacs-lisp
+  (use-package browse-kill-ring
+    :ensure t
+    :config
+    (browse-kill-ring-default-keybindings))
+#+END_SRC
+
 * Theme
 ** Custom Theme
 #+BEGIN_SRC emacs-lisp
@@ -44,6 +52,7 @@
 
   (custom-set-faces
    '(show-paren-match ((t (:background "DarkSlateGray"))))
+   '(highlight ((t (:background "dark slate gray"))))
  
    '(avy-lead-face-0    ((t (:background "DarkGoldenrod3" :foreground "black"))))
    '(avy-lead-face-1    ((t (:background "firebrick3" :foreground "black"))))
