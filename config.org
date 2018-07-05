@@ -73,22 +73,22 @@
 
    '(ivy-current-match ((t (:background "midnight blue"))))
    '(ivy-minibuffer-match-face-1 ((t (:foreground "black"
-						  :background "dark goldenrod3"))))
+						  :background "DarkGoldenrod3"))))
    '(ivy-minibuffer-match-face-2 ((t (:foreground "black"
-						  :background "dark goldenrod3"))))
+						  :background "DarkGoldenrod3"))))
    '(ivy-minibuffer-match-face-3 ((t (:foreground "black" 
-						  :background "dark goldenrod3"))))
+						  :background "DarkGoldenrod3"))))
    '(ivy-minibuffer-match-face-4 ((t (:foreground "black"
-						  :background "dark goldenrod3"))))
+						  :background "DarkGoldenrod3"))))
 
    '(swiper-match-face-1 ((t (:foreground "black"
-					  :background "dark goldenrod3"))))
+					  :background "DarkGoldenrod3"))))
    '(swiper-match-face-2 ((t (:foreground "black"
-					  :background "dark goldenrod3"))))
+					  :background "DarkGoldenrod3"))))
    '(swiper-match-face-3 ((t (:foreground "black"
-					  :background "dark goldenrod3"))))
+					  :background "DarkGoldenrod3"))))
    '(swiper-match-face-4 ((t (:foreground "black"
-					  :background "dark goldenrod3"))))
+					  :background "DarkGoldenrod3"))))
 
    '(org-level-1 ((t
 		   (:height 1.3 :foreground "#FD971F" :inherit
