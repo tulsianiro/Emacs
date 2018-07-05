@@ -267,9 +267,11 @@
   (setq eshell-prompt-function
 	(lambda nil (concat
 		     (propertize (abbreviate-file-name(eshell/pwd))
-				 'face `(:weight bold :foreground "#ce537a"))
-		     (propertize " $ "
-				 'face `(:foreground "#b2b2b2")))))
+				 'face `(:weight bold :foreground "goldenrod"))
+		     (propertize " >>"
+				 'face `(:foreground "#A6E22E"))
+		     (propertize " "
+				 'face `(:foreground "#D2D2D2")))))
   (setq eshell-highlight-prompt nil)
 #+END_SRC
 
