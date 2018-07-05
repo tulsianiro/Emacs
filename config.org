@@ -371,6 +371,12 @@
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
 #+END_SRC
 
+** Source Snippet
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-structure-template-alist
+	       '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC\n"))
+#+END_SRC
+
 * Find File/Buffer + Kill
 ** Find File and Buffer
 #+BEGIN_SRC emacs-lisp
