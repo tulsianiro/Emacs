@@ -48,7 +48,11 @@
   (use-package swiper
     :ensure t
     :bind
-    ("C-s" . swiper))
+    ("C-s" . swiper)
+    :config
+    (setq blink-matching-paren nil)
+    (add-hook 'prog-mode-hook
+	      (lambda () (setq-local blink-matching-paren t))))
 #+END_SRC
 
 * Theme
