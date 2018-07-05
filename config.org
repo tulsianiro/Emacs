@@ -449,7 +449,8 @@
 	  (setq powerline-image-apple-rgb t))
       (spaceline-spacemacs-theme)
       (spaceline-toggle-minor-modes-off)
-      (spaceline-toggle-selection-info-off))
+      (spaceline-toggle-selection-info-off)
+      (add-hook 'window-setup-hook (lambda () (powerline-reset))))
 #+END_SRC
 
 ** Colored & Shortened VC
@@ -489,3 +490,4 @@
     (setq dashboard-items '((recents . 5)))
     (setq dashboard-banner-logo-title "Welcome Rohan!"))
 #+END_SRC
+
