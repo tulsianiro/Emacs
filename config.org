@@ -266,8 +266,9 @@
 #+BEGIN_SRC emacs-lisp
   (setq eshell-prompt-function
 	(lambda nil (concat
+		     "Welcome to Your Shell, Rohan\n\n"
 		     (propertize (abbreviate-file-name(eshell/pwd))
-				 'face `(:weight bold :foreground "goldenrod"))
+				 'face `(:underline t :foreground "goldenrod"))
 		     (propertize " $"
 				 'face `(:family "DejaVu Sans Mono" :foreground "#F2F2F2"))
 		     (propertize " "
