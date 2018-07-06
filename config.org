@@ -100,14 +100,12 @@
    '(ido-incomplete-regexp ((t (:weight bold :foreground "#F92672"))))
    '(ido-indicator ((t (:width condensed :foreground "#272822"
 			       :background "#F92672"))))
-   '(ido-only-match ((t (:foreground "black"
-				 :background "DarkGoldenrod3"))))
+   '(ido-only-match ((t (:height 160 :foreground "lime green"))))
    '(ido-subdir ((t (:foreground "#66D9EF"))))
    '(ido-vertical-first-match-face ((t (:inherit (ido-first-match)))))
-   '(ido-vertical-match-face ((t (:underline
-				  (:color foreground-color :style line)
-				  :bold t :inherit
-				  (font-lock-variable-name-face)))))
+   '(ido-vertical-match-face
+     ((t (:foreground "yellow" :inherit
+		      (font-lock-variable-name-face)))))
    '(ido-vertical-only-match-face ((t (:inherit (ido-only-match)))))
    '(ido-virtual ((t (:foreground "#A1EFE4")))))
 
