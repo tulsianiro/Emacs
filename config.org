@@ -96,11 +96,11 @@
    '(compilation-mode-line-fail ((t (:weight bold :foreground "indian red"))))
    '(compilation-mode-line-run ((t (:weight bold :foreground "yellow"))))
 
-   '(ido-first-match ((t (:weight normal :foreground "#E6DB74"))))
+   '(ido-first-match ((t (:foreground "lime green"))))
    '(ido-incomplete-regexp ((t (:weight bold :foreground "#F92672"))))
    '(ido-indicator ((t (:width condensed :foreground "#272822"
 			       :background "#F92672"))))
-   '(ido-only-match ((t (:weight normal :foreground "black"
+   '(ido-only-match ((t (:foreground "black"
 				 :background "DarkGoldenrod3"))))
    '(ido-subdir ((t (:foreground "#66D9EF"))))
    '(ido-vertical-first-match-face ((t (:inherit (ido-first-match)))))
