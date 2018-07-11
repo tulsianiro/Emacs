@@ -465,6 +465,10 @@
   (global-set-key (kbd "M-r") 'query-replace)
 #+END_SRC
 
+** Comment/Uncomment
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-;") 'comment-or-uncomment-region))
+#+END_SRC
 * Abbrev
 #+BEGIN_SRC emacs-lisp
   (setq dabbrev-case-replace t)
