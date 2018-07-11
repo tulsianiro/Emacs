@@ -51,9 +51,9 @@
   (set-cursor-color "#40FF40")
 
   (custom-set-faces
-   '(show-paren-match ((t (:background "midnight blue"))))
-   '(highlight ((t (:background "midnight blue"))))
-
+   '(show-paren-match ((t (:background "#000040"))))
+   '(highlight ((t (:background "#000040"))))
+   '(region ((t (:background "#000040"))))
    '(avy-lead-face-0    ((t (:background "DarkGoldenrod3" :foreground "black"))))
    '(avy-lead-face-1    ((t (:background "firebrick3" :foreground "black"))))
    '(avy-lead-face-2    ((t (:background "dark orange" :foreground "black"))))
@@ -126,7 +126,7 @@
 
 
   (set-face-attribute 'isearch nil :background "DarkGoldenrod3" :foreground "black")
-  (set-face-attribute 'lazy-highlight nil :background "midnight blue")
+  (set-face-attribute 'lazy-highlight nil :background "#000040")
 #+END_SRC
 
 ** Font
@@ -454,6 +454,17 @@
   (global-set-key (kbd "C-c j") 'rohan-join-line)
 #+END_SRC
 
+** Grep
+#+BEGIN_SRC emacs-lisp
+  (if (eq system-type 'windows-nt)
+      (set-variable 'grep-command "findstr -s -n -i -l "))
+#+END_SRC
+
+** Query Replace
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-r") 'query-replace)
+#+END_SRC
+
 * Abbrev
 #+BEGIN_SRC emacs-lisp
   (setq dabbrev-case-replace t)
@@ -516,5 +527,151 @@
     (dashboard-setup-startup-hook)
     (setq dashboard-items '((recents . 5)))
     (setq dashboard-banner-logo-title "Welcome Rohan!"))
+#+END_SRC
+
+* Compilation
+** Continuation Lines Enable
+#+BEGIN_SRC emacs-lisp
+  (defun rohan-compilation-hook ()
+    (make-local-variable 'truncate-lines)
+    (setq truncate-lines nil))
+  (add-hook 'compilation-mode-hook 'rohan-compilation-hook)
+#+END_SRC
+
+** Compilation
+#+BEGIN_SRC emacs-lisp
+    (defun find-project-directory ()
+      "recursively search for a makefile."
+      (interactive)
+      (if (file-exists-p "build.bat") t
+	(cd "../")
+	(find-project-directory-recursive)))
+
+    (defun make-without-asking ()
+      "make the current build."
+      (interactive)
+      (if (find-project-directory) (compile "build.bat")))
+
+  (define-key global-map "\em" 'make-without-asking)
+  (define-key global-map "\eM" 'first-error)
+  (define-key global-map "\en" 'next-error)
+  (define-key global-map "\eN" 'previous-error)
+#+END_SRC
+
+* C++
+** File Extension
+#+BEGIN_SRC emacs-lisp
+  (setq auto-mode-alist
+	(append '(("\\.h$" . c++-mode))
+		auto-mode-alist))
+#+END_SRC
+
+** C Style
+#+BEGIN_SRC emacs-lisp
+  (defconst rohan-c-style
+    '((c-electric-pound-behavior   . nil)
+      (c-tab-always-indent         . t)
+      (c-comment-only-line-offset  . 0)
+      (c-hanging-braces-alist      . ((class-open)
+				      (class-close)
+				      (defun-open)
+				      (defun-close)
+				      (inline-open)
+				      (inline-close)
+				      (brace-list-open)
+				      (brace-list-close)
+				      (brace-list-intro)
+				      (brace-list-entry)
+				      (block-open)
+				      (block-close)
+				      (substatement-open)
+				      (statement-case-open)
+				      (class-open)))
+      (c-hanging-colons-alist      . ((inher-intro)
+				      (case-label)
+				      (label)
+				      (access-label)
+				      (access-key)
+				      (member-init-intro)))
+      (c-cleanup-list              . (scope-operator
+				      list-close-comma
+				      defun-close-semi))
+      (c-offsets-alist             . ((arglist-close         .  c-lineup-arglist)
+				      (label                 . -4)
+				      (access-label          . -4)
+				      (substatement-open     .  0)
+				      (statement-case-intro  .  4)
+				      (case-label            .  4)
+				      (block-open            .  0)
+				      (inline-open           .  0)
+				      (topmost-intro-cont    .  0)
+				      (knr-argdecl-intro     . -4)
+				      (brace-list-open       .  0)
+				      (brace-list-intro      .  4)))
+      (c-echo-syntactic-information-p . t)) "Rohan's C Style")
+#+END_SRC
+
+** C Hook
+#+BEGIN_SRC emacs-lisp
+  (defun rohan-c-hook ()
+    (c-add-style "Rohan-C-Stlye" rohan-c-style t)
+  
+    (setq tab-width 4
+	  indent-tabs-mode nil)
+
+    (c-set-offset 'member-init-intro '++)
+    (c-toggle-auto-hungry-state -1)
+
+    ; newline indents, semi-colon doesn't
+    (define-key c++-mode-map "\C-m" 'newline-and-indent)
+    (setq c-hanging-semi&comma-criteria '((lambda () 'stop)))
+
+    (defun rohan-header-format ()
+      "format the given file as a header file."
+      (interactive)
+      (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+      (save-excursion
+	(insert "#if !defined(")
+	(push-mark)
+	(insert BaseFileName)
+	(upcase-region (mark) (point))
+	(pop-mark)
+	(insert "_H)\n")
+	(insert "\n")
+	(insert "#define ")
+	(push-mark)
+	(insert BaseFileName)
+	(upcase-region (mark) (point))
+	(pop-mark)
+	(insert "_H\n")
+	(insert "#endif")))
+    (cond ((file-exists-p buffer-file-name) t)
+	  ((string-match "[.]h" buffer-file-name) (rohan-header-format)))
+  
+    (defun rohan-find-corresponding-file ()
+      "find the file that corresponds to this one."
+      (interactive)
+      (setq CorrespondingFileName nil)
+      (setq BaseFileName (file-name-sans-extension buffer-file-name))
+      (if (string-match "\\.h" buffer-file-name)
+	  (setq CorrespondingFileName (concat BaseFileName ".cpp")))
+      (if (string-match "\\.cpp" buffer-file-name)
+	  (setq CorrespondingFileName (concat BaseFileName ".h")))
+      (if CorrespondingFileName (find-file CorrespondingFileName)
+	(error "unable to find a corresponding file")))  
+    (defun rohan-find-corresponding-file-other-window ()
+      "find the file that corresponds to this one."
+      (interactive)
+      (find-file-other-window buffer-file-name)
+      (rohan-find-corresponding-file)
+      (other-window -1))
+  
+    (define-key c++-mode-map (kbd "C-c h") 'rohan-find-corresponding-file)
+    (define-key c++-mode-map (kbd "C-c H") 'rohan-find-corresponding-file-other-window)
+
+    (setq-default fill-column 60)
+    (define-key c++-mode-map "\e." 'c-fill-paragraph))
+
+  (add-hook 'c-mode-common-hook 'rohan-c-hook)
 #+END_SRC
 
