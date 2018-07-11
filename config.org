@@ -467,7 +467,7 @@
 
 ** Comment/Uncomment
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-;") 'comment-or-uncomment-region))
+(global-set-key (kbd "M-;") 'comment-or-uncomment-region)
 #+END_SRC
 * Abbrev
 #+BEGIN_SRC emacs-lisp
