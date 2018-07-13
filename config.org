@@ -470,6 +470,12 @@
 (global-set-key (kbd "M-;") 'comment-or-uncomment-region)
 #+END_SRC
 
+** Jump To Empty Line
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-p") 'backward-paragraph)
+  (global-set-key (kbd "M-n") 'forward-paragraph)
+#+END_SRC
+
 * Abbrev
 #+BEGIN_SRC emacs-lisp
   (setq dabbrev-case-replace t)
@@ -557,10 +563,10 @@
       (interactive)
       (if (find-project-directory) (compile "build.bat")))
 
-  (define-key global-map "\em" 'make-without-asking)
-  (define-key global-map "\eM" 'first-error)
-  (define-key global-map "\en" 'next-error)
-  (define-key global-map "\eN" 'previous-error)
+  (global-set-key (kbd "C-c c") 'make-without-asking)
+  (global-set-key (kbd "C-c n") 'next-error)
+  (global-set-key (kbd "C-c p") 'previous-error)
+  (global-set-key (kbd "C-c f") 'first-error)
 #+END_SRC
 
 * C++
