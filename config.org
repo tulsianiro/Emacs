@@ -124,8 +124,8 @@
   (set-face-attribute 'secondary-selection nil :background "black")
 
 
-  (set-face-attribute 'isearch nil :background "dark red" :foreground "white")
-  (set-face-attribute 'lazy-highlight nil :background "dark blue")
+  (set-face-attribute 'isearch nil :weight 'extra-bold :background "firebrick" :foreground "white")
+  (set-face-attribute 'lazy-highlight nil :background "midnight blue" :foreground "white")
   (set-face-attribute 'show-paren-match nil :background nil :foreground "lime green" :weight 'extra-bold)
 #+END_SRC
 
