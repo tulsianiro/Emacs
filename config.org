@@ -124,8 +124,8 @@
   (set-face-attribute 'secondary-selection nil :background "black")
 
 
-  (set-face-attribute 'isearch nil :weight 'ultra-bold :background "midnight blue" :foreground "HotPink1")
-  (set-face-attribute 'lazy-highlight nil :background "midnight blue" :foreground "white")
+  (set-face-attribute 'isearch nil :background "midnight blue" :foreground "white")
+  (set-face-attribute 'lazy-highlight nil :background "midnight blue" :foreground "burlywood3")
   (set-face-attribute 'show-paren-match nil :background nil :foreground "lime green" :weight 'extra-bold)
 #+END_SRC
 
@@ -134,7 +134,7 @@
   (if (eq system-type 'windows-nt)
       (add-to-list 'default-frame-alist '(font . "Consolas-13.5")))
   (if (eq system-type 'darwin)
-      (add-to-list 'default-frame-alist '(font . "Liberation Mono-14")))
+      (add-to-list 'default-frame-alist '(font . "Liberation Mono-14.5")))
 #+END_SRC
 
 ** Colors for Comments
