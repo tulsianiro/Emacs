@@ -134,7 +134,7 @@
   (if (eq system-type 'windows-nt)
       (add-to-list 'default-frame-alist '(font . "Consolas-13.5")))
   (if (eq system-type 'darwin)
-      (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-14")))
+      (add-to-list 'default-frame-alist '(font . "Liberation Mono-14")))
 #+END_SRC
 
 ** Colors for Comments
