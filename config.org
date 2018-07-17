@@ -126,7 +126,7 @@
 
 
   (set-face-attribute 'isearch nil :background "DarkGoldenrod3" :foreground "black")
-  (set-face-attribute 'lazy-highlight nil :background "#000040")
+  (set-face-attribute 'lazy-highlight nil :background "#00009f")
   (set-face-attribute 'show-paren-match nil :foreground "green" :weight 'extra-bold)
 #+END_SRC
 
