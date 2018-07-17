@@ -127,6 +127,7 @@
 
   (set-face-attribute 'isearch nil :background "DarkGoldenrod3" :foreground "black")
   (set-face-attribute 'lazy-highlight nil :background "#000040")
+  (set-face-attribute 'show-paren-match nil :foreground "green" :weight 'extra-bold)
 #+END_SRC
 
 ** Font
@@ -549,19 +550,30 @@
   (add-hook 'compilation-mode-hook 'rohan-compilation-hook)
 #+END_SRC
 
+** Set Build Script
+#+BEGIN_SRC emacs-lisp
+  (if (eq system-type 'darwin)
+      (setq build-file "./compile"))
+  (if (eq system-type 'windows-nt)
+      (setq build-file "build.bat"))
+#+END_SRC
+
 ** Compilation
 #+BEGIN_SRC emacs-lisp
-    (defun find-project-directory ()
-      "recursively search for a makefile."
-      (interactive)
-      (if (file-exists-p "build.bat") t
-	(cd "../")
-	(find-project-directory-recursive)))
+  (defun find-project-directory ()
+    "recursively search for a makefile."
+    (interactive)
+    (if (file-exists-p build-file) t
+      (cd "../")))
 
-    (defun make-without-asking ()
-      "make the current build."
-      (interactive)
-      (if (find-project-directory) (compile "build.bat")))
+  (defun make-without-asking ()
+    "make the current build."
+    (interactive)
+    (let ((original-dir default-directory))
+      (if (find-project-directory)
+	  (progn
+	    (compile build-file)
+	    (cd original-dir)))))
 
   (global-set-key (kbd "C-c c") 'make-without-asking)
   (global-set-key (kbd "C-c n") 'next-error)
