@@ -476,6 +476,14 @@
   (global-set-key (kbd "M-n") 'forward-paragraph)
 #+END_SRC
 
+** Mark Navigation
+#+BEGIN_SRC emacs-lisp
+  ;; pop mark
+  (global-set-key (kbd "C-'") (kbd "C-u C-SPC"))
+  ;; exchange point and mark
+  (global-set-key (kbd "M-'") 'exchange-point-and-mark)
+#+END_SRC
+
 * Abbrev
 #+BEGIN_SRC emacs-lisp
   (setq dabbrev-case-replace t)
