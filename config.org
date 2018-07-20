@@ -634,6 +634,29 @@
       (c-echo-syntactic-information-p . t)) "Rohan's C Style")
 #+END_SRC
 
+** Hack for List Initialization
+#+BEGIN_SRC emacs-lisp
+  (defun un-indent-by-removing-4-spaces ()
+    "remove 4 spaces from beginning of of line"
+    (interactive)
+    (save-excursion
+      (beginning-of-line)
+      (delete-char 4)))
+
+  (defadvice c-indent-line (after c-indent-line-after-hack activate)
+    "workaround C indent issue."
+    (when (or (eq major-mode 'c++-mode)
+	      (eq major-mode 'c-mode))
+      (let ((cur-line (buffer-substring-no-properties
+		       (line-beginning-position)
+		       (line-end-position)))
+	    (guess-syntax (caar (c-guess-basic-syntax))))
+	(when (and (string-match "^\\( +\\)\{ *$" cur-line)
+		   (or (eq guess-syntax 'statement-cont)
+		       (eq  guess-syntax 'brace-list-open))
+		   (un-indent-by-removing-4-spaces))))))
+#+END_SRC
+
 ** C Hook
 #+BEGIN_SRC emacs-lisp
   (defun rohan-c-hook ()
