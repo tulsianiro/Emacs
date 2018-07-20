@@ -285,7 +285,7 @@
 ** IDO for I-Menu
 #+BEGIN_SRC emacs-lisp
   (defun ido-goto-symbol (&optional symbol-list)
-    "Refresh imenu and jump to a place in the buffer using Ido."
+    "refresh imenu and jump to a place in the buffer using Ido."
     (interactive)
     (unless (featurep 'imenu)
       (require 'imenu nil t))
@@ -306,8 +306,7 @@
 		 (setq selected-symbol
 		       (ido-completing-read "Symbol? " symbol-names))
 		 (string= (car imenu--rescan-item) selected-symbol)))
-	(unless (and (boundp 'mark-active) mark-active)
-	  (push-mark nil t nil))
+	(push-mark nil t nil)
 	(setq position (cdr (assoc selected-symbol name-and-pos)))
 	(cond
 	 ((overlayp position)
