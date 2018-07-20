@@ -574,10 +574,10 @@
 	    (compile build-file)
 	    (cd original-dir)))))
 
-  (global-set-key (kbd "C-c c") 'make-without-asking)
-  (global-set-key (kbd "C-c n") 'next-error)
-  (global-set-key (kbd "C-c p") 'previous-error)
-  (global-set-key (kbd "C-c f") 'first-error)
+  (global-set-key (kbd "M-<down>") 'make-without-asking)
+  (global-set-key (kbd "M-<right>") 'next-error)
+  (global-set-key (kbd "M-<left>") 'previous-error)
+  (global-set-key (kbd "M-<up>") 'first-error)
 #+END_SRC
 
 * C++
