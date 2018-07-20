@@ -672,7 +672,7 @@
 	    (guess-syntax (caar (c-guess-basic-syntax))))
 	(when (and (string-match "^\\( +\\)\{ *$" cur-line)
 		   (or (eq guess-syntax 'statement-cont)
-		       (eq  guess-syntax 'brace-list-open))
+		       (eq guess-syntax 'brace-list-open))
 		   (un-indent-by-removing-4-spaces))))))
 #+END_SRC
 
