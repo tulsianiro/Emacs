@@ -465,6 +465,18 @@
   (global-set-key (kbd "M-r") 'query-replace)
 #+END_SRC
 
+** Replace in Region
+#+BEGIN_SRC emacs-lisp
+  (defun rohan-replace-in-region (old-word new-word)
+    "perform a replace-string in the current region."
+    (interactive "sReplace: \nsReplace: %s With: ")
+    (save-excursion (save-restriction
+		      (narrow-to-region (mark) (point))
+		      (beginning-of-buffer)
+		      (replace-string old-word new-word))))
+  (global-set-key (kbd "M-R") 'rohan-replace-in-region)
+#+END_SRC
+
 ** Comment/Uncomment
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-;") 'comment-or-uncomment-region)
