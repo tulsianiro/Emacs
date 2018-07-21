@@ -420,13 +420,9 @@
 #+END_SRC
 
 * Convenient Function
-** Kill Whole Word
+** Kill Line
 #+BEGIN_SRC emacs-lisp
-  (defun kill-whole-word ()
-    (interactive)
-    (backward-word)
-    (kill-word 1))
-  (global-set-key (kbd "C-c w") 'kill-whole-word)
+(global-set-key (kbd "C-c k") 'kill-whole-line)
 #+END_SRC
 
 ** Copy Line
