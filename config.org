@@ -681,7 +681,7 @@
     (setq tab-width 4
 	  indent-tabs-mode nil)
 
-    (c-set-offset 'member-init-intro '++)
+    (c-set-offset 'member-init-intro '+)
     (c-toggle-auto-hungry-state -1)
 
     ; newline indents, semi-colon doesn't
