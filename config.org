@@ -606,7 +606,7 @@
 ** C Style
 #+BEGIN_SRC emacs-lisp
   (defconst rohan-c-style
-    '((c-electric-pound-behavior   . nil)
+    '((c-electric-pound-behavior   . 'alignleft)
       (c-tab-always-indent         . t)
       (c-comment-only-line-offset  . 0)
       (c-hanging-braces-alist      . ((class-open)
@@ -643,6 +643,7 @@
 				      (block-open            .  0)
 				      (inline-open           .  0)
 				      (topmost-intro-cont    .  0)
+				      (func-decl-cont        .  0)
 				      (knr-argdecl-intro     . -4)
 				      (brace-list-open       .  4)
 				      (brace-list-intro      .  4)))
