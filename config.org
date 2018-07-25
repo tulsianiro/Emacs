@@ -53,10 +53,11 @@
   (custom-set-faces
    '(highlight ((t (:background "#000040"))))
    '(region ((t (:background "#000040"))))
-   '(avy-lead-face-0    ((t (:background "DarkGoldenrod3" :foreground "black"))))
-   '(avy-lead-face-1    ((t (:background "firebrick3" :foreground "black"))))
-   '(avy-lead-face-2    ((t (:background "dark orange" :foreground "black"))))
-   '(avy-lead-face      ((t (:background "olive drab" :foreground "black"))))
+
+   '(avy-lead-face      ((t (:background "#293235" :foreground "#67b11d"))))
+   '(avy-lead-face-0    ((t (:background "#293235" :foreground "#b1951d"))))
+   '(avy-lead-face-1    ((t (:background "#293235" :foreground "#a31db1"))))
+   '(avy-lead-face-2    ((t (:background "#293235" :foreground "#4f97d7"))))
 
    '(org-level-1 ((t
 		   (:height 1.3 :foreground "#FD971F" :inherit
