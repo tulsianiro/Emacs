@@ -295,6 +295,13 @@
 
 #+END_SRC
 
+*** Char/Line Mode Linux
+#+BEGIN_SRC emacs-lisp
+  (eval-after-load "term"
+    (progn
+      '(define-key term-raw-map (kbd "C-x C-k") 'kill-this-buffer)))
+#+END_SRC
+
 * IDO
 ** Enable IDO Mode
 #+BEGIN_SRC emacs-lisp
