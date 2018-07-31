@@ -136,6 +136,8 @@
       (add-to-list 'default-frame-alist '(font . "Consolas-13.5")))
   (if (eq system-type 'darwin)
       (add-to-list 'default-frame-alist '(font . "Liberation Mono-14.5")))
+  (if (eq system-type 'gnu/linux)
+      (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-12")))
 #+END_SRC
 
 ** Colors for Comments
@@ -211,7 +213,9 @@
 * Terminal
 ** Keybinding 
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "<M-return>") 'eshell)
+  (if (eq system-type 'gnu/linux)
+      (global-set-key (kbd "<M-return>") 'ansi-term)
+    (global-set-key (kbd "<M-return>") 'eshell))
 #+END_SRC
 
 ** Fixing Emacs Shell Clear Function
@@ -252,6 +256,35 @@
 				'face `(:foreground "green"))
 		    (propertize (if (= (user-uid) 0) " # " " $ ")
 				'face `(:foreground "green")))))
+
+#+END_SRC
+
+** Linux
+#+BEGIN_SRC emacs-lisp
+  (defun setup-linux-ansi-term ()
+    (interactive)
+
+    (custom-set-faces
+     '(term-color-black ((t (:foreground "#3F3F3F" :background "#2B2B2B"))))
+     '(term-color-red ((t (:foreground "#AC7373" :background "#8C5353"))))
+     '(term-color-green ((t (:foreground "#7F9F7F" :background "#9FC59F"))))
+     '(term-color-yellow ((t (:foreground "#DFAF8F" :background "#9FC59F"))))
+     '(term-color-blue ((t (:foreground "#7CB8BB" :background "#4C7073"))))
+     '(term-color-magenta ((t (:foreground "#DC8CC3" :background "#CC9393"))))
+     '(term-color-cyan ((t (:foreground "#93E0E3" :background "#8CD0D3"))))
+     '(term-color-white ((t (:foreground "#DCDCCC" :background "#656555"))))
+
+     '(term-default-fg-color ((t (:inherit term-color-white))))
+     '(term-default-bg-color ((t (:inherit term-color-black))))))
+
+  (defadvice ansi-term (before force-bash)
+    (interactive (list my-term-shell)))
+  (when (eq system-type 'gnu/linux)
+    (defvar my-term-shell "/bin/bash")
+    (ad-activate 'ansi-term))
+
+  (if (eq system-type 'gnu/linux)
+      (setup-linux-ansi-term))
 
 #+END_SRC
 
@@ -499,7 +532,11 @@
   (setq dabbrev-upcase-means-case-search t)
 
   (define-key global-map "\t" 'dabbrev-expand)
-  (define-key global-map [S-tab] 'indent-for-tab-command)
+
+  (if (eq system-type 'gnu/linux)
+      (define-key global-map (kbd "<backtab>") 'indent-for-tab-command)
+    (define-key global-map [S-tab] 'indent-for-tab-command))
+
   (define-key global-map [C-tab] 'indent-region)
 #+END_SRC
 
