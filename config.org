@@ -480,8 +480,20 @@
 
 ** Jump To Empty Line
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "M-p") 'backward-paragraph)
-  (global-set-key (kbd "M-n") 'forward-paragraph)
+  (defun previous-blank-line ()
+    "moves to the previous line containing nothing but whitespace."
+    (interactive)
+    (search-backward-regexp "^[ \t]*\n"))
+
+  (defun next-blank-line ()
+    "moves to the next line containing nothing but whitespace."
+    (interactive)
+    (forward-line)
+    (search-forward-regexp "^[ \t]*\n")
+    (forward-line -1))
+
+  (global-set-key (kbd "M-p") 'previous-blank-line)
+  (global-set-key (kbd "M-n") 'next-blank-line)
 #+END_SRC
 
 ** Mark Navigation
