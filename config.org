@@ -744,7 +744,7 @@
     (define-key c++-mode-map (kbd "C-c h") 'rohan-find-corresponding-file)
     (define-key c++-mode-map (kbd "C-c H") 'rohan-find-corresponding-file-other-window)
 
-    (setq-default fill-column 60)
+    (setq-default fill-column 78)
     (define-key c++-mode-map "\e." 'c-fill-paragraph))
 
   (add-hook 'c-mode-common-hook 'rohan-c-hook)
