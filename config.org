@@ -504,6 +504,11 @@
   (global-set-key (kbd "M-'") 'exchange-point-and-mark)
 #+END_SRC
 
+** Zap Up to Char
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-z") 'zap-up-to-char)
+#+END_SRC
+
 * Abbrev
 #+BEGIN_SRC emacs-lisp
   (setq dabbrev-case-replace t)
