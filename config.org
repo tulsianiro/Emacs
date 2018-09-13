@@ -617,7 +617,7 @@
 ** File Extension
 #+BEGIN_SRC emacs-lisp
   (setq auto-mode-alist
-	(append '(("\\.h$" . c++-mode))
+	(append '(("\\.h$" . c++-mode) ("\\.hlsl$" . c++-mode))
 		auto-mode-alist))
 #+END_SRC
 
