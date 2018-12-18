@@ -657,6 +657,7 @@
       (c-offsets-alist             . ((arglist-close         .  c-lineup-arglist)
 				      (label                 . -4)
 				      (access-label          . -4)
+				      (cpp-define-intro      .  0)
 				      (substatement-open     .  0)
 				      (statement-case-intro  .  4)
 				      (statement-cont        .  4)
