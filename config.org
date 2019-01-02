@@ -133,7 +133,7 @@
 ** Font
 #+BEGIN_SRC emacs-lisp
   (if (eq system-type 'windows-nt)
-      (add-to-list 'default-frame-alist '(font . "Consolas-12")))
+      (add-to-list 'default-frame-alist '(font . "Consolas-12.5")))
   (if (eq system-type 'darwin)
       (add-to-list 'default-frame-alist '(font . "Liberation Mono-14.5")))
 #+END_SRC
@@ -625,7 +625,7 @@
 ** File Extension
 #+BEGIN_SRC emacs-lisp
   (setq auto-mode-alist
-	(append '(("\\.h$" . c++-mode) ("\\.hlsl$" . c++-mode))
+	(append '(("\\.h$" . c++-mode) ("\\.hlsl$" . c++-mode) ("\\.glsl$" . c++-mode))
 		auto-mode-alist))
 #+END_SRC
 
