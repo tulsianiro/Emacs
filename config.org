@@ -133,7 +133,7 @@
 ** Font
 #+BEGIN_SRC emacs-lisp
   (if (eq system-type 'windows-nt)
-      (add-to-list 'default-frame-alist '(font . "Consolas-12.5")))
+      (add-to-list 'default-frame-alist '(font . "Consolas-12")))
   (if (eq system-type 'darwin)
       (add-to-list 'default-frame-alist '(font . "Liberation Mono-14.5")))
 #+END_SRC
@@ -154,6 +154,11 @@
 #+END_SRC
 
 * Basic Settings
+** Paren Mode
+#+BEGIN_SRC emacs-lisp
+(setq show-paren-mode 1)
+#+END_SRC
+
 ** Disable Yes or No Prompts
 #+BEGIN_SRC emacs-lisp
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -704,65 +709,66 @@
 #+BEGIN_SRC emacs-lisp
   (add-hook 'c-mode-hook (lambda () (c-toggle-comment-style -1)))
 
-    (defun rohan-c-hook ()
-      (c-add-style "Rohan-C-Stlye" rohan-c-style t)
-  
-      (setq tab-width 4
-	    indent-tabs-mode nil)
+  (defun rohan-c-hook ()
+    (c-add-style "Rohan-C-Style" rohan-c-style t)
 
-      (c-set-offset 'member-init-intro '+)
-      (c-toggle-auto-hungry-state -1)
+    (setq tab-width 4
+	  indent-tabs-mode nil)
 
-      ; newline indents, semi-colon doesn't
-      (define-key c++-mode-map "\C-m" 'newline-and-indent)
-      (setq c-hanging-semi&comma-criteria '((lambda () 'stop)))
+    (c-set-offset 'member-init-intro '+)
+    (c-toggle-auto-hungry-state -1)
 
-      (defun rohan-header-format ()
-	"format the given file as a header file."
-	(interactive)
-	(setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-	(save-excursion
-	  (insert "#if !defined(")
-	  (push-mark)
-	  (insert BaseFileName)
-	  (upcase-region (mark) (point))
-	  (pop-mark)
-	  (insert "_H)\n")
-	  (insert "\n")
-	  (insert "#define ")
-	  (push-mark)
-	  (insert BaseFileName)
-	  (upcase-region (mark) (point))
-	  (pop-mark)
-	  (insert "_H\n")
-	  (insert "#endif")))
-      (cond ((file-exists-p buffer-file-name) t)
-	    ((string-match "[.]h" buffer-file-name) (rohan-header-format)))
-  
-      (defun rohan-find-corresponding-file ()
-	"find the file that corresponds to this one."
-	(interactive)
-	(setq CorrespondingFileName nil)
-	(setq BaseFileName (file-name-sans-extension buffer-file-name))
-	(if (string-match "\\.h" buffer-file-name)
-	    (setq CorrespondingFileName (concat BaseFileName ".cpp")))
-	(if (string-match "\\.cpp" buffer-file-name)
-	    (setq CorrespondingFileName (concat BaseFileName ".h")))
-	(if CorrespondingFileName (find-file CorrespondingFileName)
-	  (error "unable to find a corresponding file")))  
-      (defun rohan-find-corresponding-file-other-window ()
-	"find the file that corresponds to this one."
-	(interactive)
-	(find-file-other-window buffer-file-name)
-	(rohan-find-corresponding-file)
-	(other-window -1))
-  
-      (define-key c++-mode-map (kbd "C-c h") 'rohan-find-corresponding-file)
-      (define-key c++-mode-map (kbd "C-c H") 'rohan-find-corresponding-file-other-window)
+					  ; newline indents, semi-colon doesn't
+    (define-key c++-mode-map "\C-m" 'newline-and-indent)
+    (setq c-hanging-semi&comma-criteria '((lambda () 'stop)))
 
-      (setq-default fill-column 78)
-      (define-key c++-mode-map "\e." 'c-fill-paragraph))
+    (defun rohan-header-format ()
+      "format the given file as a header file."
+      (interactive)
+      (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+      (save-excursion
+	(insert "#if !defined(")
+	(push-mark)
+	(insert BaseFileName)
+	(upcase-region (mark) (point))
+	(pop-mark)
+	(insert "_H)\n")
+	(insert "\n")
+	(insert "#define ")
+	(push-mark)
+	(insert BaseFileName)
+	(upcase-region (mark) (point))
+	(pop-mark)
+	(insert "_H\n")
+	(insert "#endif")))
+    (cond ((file-exists-p buffer-file-name) t)
+	  ((string-match "[.]h" buffer-file-name) (rohan-header-format)))
 
-    (add-hook 'c-mode-common-hook 'rohan-c-hook)
+    (defun rohan-find-corresponding-file ()
+      "find the file that corresponds to this one."
+      (interactive)
+      (setq CorrespondingFileName nil)
+      (setq BaseFileName (file-name-sans-extension buffer-file-name))
+      (if (string-match "\\.h" buffer-file-name)
+	  (setq CorrespondingFileName (concat BaseFileName ".cpp")))
+      (if (string-match "\\.cpp" buffer-file-name)
+	  (setq CorrespondingFileName (concat BaseFileName ".h")))
+      (if CorrespondingFileName (find-file CorrespondingFileName)
+	(error "unable to find a corresponding file")))  
+    (defun rohan-find-corresponding-file-other-window ()
+      "find the file that corresponds to this one."
+      (interactive)
+      (find-file-other-window buffer-file-name)
+      (rohan-find-corresponding-file)
+      (other-window -1))
+
+    (define-key c++-mode-map (kbd "C-c h") 'rohan-find-corresponding-file)
+    (define-key c++-mode-map (kbd "C-c H") 'rohan-find-corresponding-file-other-window)
+
+    (setq-default fill-column 78)
+    (define-key c++-mode-map "\e." 'c-fill-paragraph))
+
+  (add-hook 'c-mode-common-hook 'rohan-c-hook)
 #+END_SRC
+
 
