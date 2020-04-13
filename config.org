@@ -547,6 +547,11 @@
       (add-hook 'window-setup-hook (lambda () (powerline-reset))))
 #+END_SRC
 
+** Get Rid of VC
+#+BEGIN_SRC emacs-lisp
+(setq vc-handled-backends nil)
+#+END_SRC
+
 ** Colored & Shortened VC
 #+BEGIN_SRC emacs-lisp
   (make-face 'vc-green)
