@@ -46,88 +46,90 @@
 * Theme
 ** Custom Theme
 #+BEGIN_SRC emacs-lisp
-  (set-foreground-color "burlywood3")
-  (set-background-color "#161616")
-  (set-cursor-color "#40FF40")
+  (load-theme 'doom-one t)
+
+  ;; (set-foreground-color "burlywood3")
+  ;; (set-background-color "#161616")
+  ;; (set-cursor-color "#40FF40")
 
   (custom-set-faces
-   '(highlight ((t (:background "#000040"))))
-   '(region ((t (:background "#000040"))))
+  ;;  '(highlight ((t (:background "#000040"))))
+  ;;  '(region ((t (:background "#000040"))))
 
    '(avy-lead-face      ((t (:background "#293235" :foreground "#67b11d"))))
    '(avy-lead-face-0    ((t (:background "#293235" :foreground "#b1951d"))))
    '(avy-lead-face-1    ((t (:background "#293235" :foreground "#a31db1"))))
-   '(avy-lead-face-2    ((t (:background "#293235" :foreground "#4f97d7"))))
+   '(avy-lead-face-2    ((t (:background "#293235" :foreground "#4f97d7")))))
 
-   '(org-level-1 ((t
-		   (:height 1.3 :foreground "#FD971F" :inherit
-			    (default)))))
-   '(org-level-2 ((t
-		   (:height 1.2 :foreground "#A6E22E" :inherit
-			    (default)))))
-   '(org-level-3 ((t
-		   (:height 1.15 :foreground "#66D9EF" :inherit
-			    (default)))))
+  ;;  '(org-level-1 ((t
+  ;; 		 (:height 1.3 :foreground "#FD971F" :inherit
+  ;; 			  (default)))))
+  ;;  '(org-level-2 ((t
+  ;; 		 (:height 1.2 :foreground "#A6E22E" :inherit
+  ;; 			  (default)))))
+  ;;  '(org-level-3 ((t
+  ;; 		 (:height 1.15 :foreground "#66D9EF" :inherit
+  ;; 			  (default)))))
 
-   '(mode-line ((t (:box
-		    (:line-width 1 :color "#64645E" :style unspecified)
-		    :foreground "#F8F8F0" :background "#49483E"))))
-   '(mode-line-inactive ((t (:box
-			     (:line-width 1 :color "#64645E" :style unspecified)
-			     :foreground "#75715E" :background "#272822"))))
+  ;;  '(mode-line ((t (:box
+  ;; 		  (:line-width 1 :color "#64645E" :style unspecified)
+  ;; 		  :foreground "#F8F8F0" :background "#49483E"))))
+  ;;  '(mode-line-inactive ((t (:box
+  ;; 			   (:line-width 1 :color "#64645E" :style unspecified)
+  ;; 			   :foreground "#75715E" :background "#272822"))))
 
-   '(mode-line-buffer-id ((t (:weight bold :foreground "#A6E22E"))))
-   '(mode-line-buffer-id-inactive ((t (:weight bold :foreground "#A6E22E"))))
+  ;;  '(mode-line-buffer-id ((t (:weight bold :foreground "#A6E22E"))))
+  ;;  '(mode-line-buffer-id-inactive ((t (:weight bold :foreground "#A6E22E"))))
 
-   '(powerline-active0 ((t (:inherit
-			    (mode-line)))))
-   '(powerline-active1 ((t (:background "#35331D"))))
-   '(powerline-active2 ((t (:background "#272822"))))
+  ;;  '(powerline-active0 ((t (:inherit
+  ;; 			  (mode-line)))))
+  ;;  '(powerline-active1 ((t (:background "#35331D"))))
+  ;;  '(powerline-active2 ((t (:background "#272822"))))
 
-   '(powerline-inactive0 ((t (:inherit
-			      (mode-line-inactive)))))
-   '(powerline-inactive1 ((t (:background "#35331D"))))
-   '(powerline-inactive2 ((t (:background "#272822"))))
+  ;;  '(powerline-inactive0 ((t (:inherit
+  ;; 			    (mode-line-inactive)))))
+  ;;  '(powerline-inactive1 ((t (:background "#35331D"))))
+  ;;  '(powerline-inactive2 ((t (:background "#272822"))))
 
-   '(org-block-begin-line ((t (:foreground "white" :background "#35331D"))))
-   '(org-block-end-line ((t (:foreground "white" :background "#35331D"))))
+  ;;  '(org-block-begin-line ((t (:foreground "white" :background "#35331D"))))
+  ;;  '(org-block-end-line ((t (:foreground "white" :background "#35331D"))))
 
-   '(compilation-mode-line-exit ((t (:weight bold :foreground "light green"))))
-   '(compilation-mode-line-fail ((t (:weight bold :foreground "indian red"))))
-   '(compilation-mode-line-run ((t (:weight bold :foreground "yellow"))))
+  ;;  '(compilation-mode-line-exit ((t (:weight bold :foreground "light green"))))
+  ;;  '(compilation-mode-line-fail ((t (:weight bold :foreground "indian red"))))
+  ;;  '(compilation-mode-line-run ((t (:weight bold :foreground "yellow"))))
 
-   '(ido-first-match ((t (:foreground "lime green"))))
-   '(ido-incomplete-regexp ((t (:weight bold :foreground "#F92672"))))
-   '(ido-indicator ((t (:width condensed :foreground "#272822"
-			       :background "#F92672"))))
-   '(ido-only-match ((t (:weight bold :foreground "#A6E22E"))))  
-   '(ido-subdir ((t (:foreground "#66D9EF"))))
-   '(ido-vertical-first-match-face ((t (:inherit (ido-first-match)))))
-   '(ido-vertical-match-face
-     ((t (:foreground "yellow" :inherit
-		      (font-lock-variable-name-face)))))
-   '(ido-vertical-only-match-face ((t (:inherit (ido-only-match)))))
-   '(ido-virtual ((t (:foreground "#A1EFE4")))))
-
-
-  (set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
-  (set-face-attribute 'font-lock-comment-face nil :foreground "gray50")
-  (set-face-attribute 'font-lock-constant-face nil :foreground "olive drab")
-  (set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
-  (set-face-attribute 'font-lock-function-name-face nil :foreground "burlywood3")
-  (set-face-attribute 'font-lock-keyword-face nil :foreground "DarkGoldenrod3")
-  (set-face-attribute 'font-lock-string-face nil :foreground "olive drab")
-  (set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
-  (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
-  (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
-  (set-face-attribute 'org-block nil :foreground "burlywood3"
-		      :background "black")
-  (set-face-attribute 'secondary-selection nil :background "black")
+  ;;  '(ido-first-match ((t (:foreground "lime green"))))
+  ;;  '(ido-incomplete-regexp ((t (:weight bold :foreground "#F92672"))))
+  ;;  '(ido-indicator ((t (:width condensed :foreground "#272822"
+  ;; 			     :background "#F92672"))))
+  ;;  '(ido-only-match ((t (:weight bold :foreground "#A6E22E"))))  
+  ;;  '(ido-subdir ((t (:foreground "#66D9EF"))))
+  ;;  '(ido-vertical-first-match-face ((t (:inherit (ido-first-match)))))
+  ;;  '(ido-vertical-match-face
+  ;;    ((t (:foreground "yellow" :inherit
+  ;; 		    (font-lock-variable-name-face)))))
+  ;;  '(ido-vertical-only-match-face ((t (:inherit (ido-only-match)))))
+  ;;  '(ido-virtual ((t (:foreground "#A1EFE4")))))
 
 
-  (set-face-attribute 'isearch nil :background "midnight blue" :weight 'extra-bold :foreground "yellow")
-  (set-face-attribute 'lazy-highlight nil :background "midnight blue" :foreground "white")
-  (set-face-attribute 'show-paren-match nil :background nil :foreground "lime green" :weight 'extra-bold)
+  ;; (set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
+  ;; (set-face-attribute 'font-lock-comment-face nil :foreground "gray50")
+  ;; (set-face-attribute 'font-lock-constant-face nil :foreground "olive drab")
+  ;; (set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
+  ;; (set-face-attribute 'font-lock-function-name-face nil :foreground "burlywood3")
+  ;; (set-face-attribute 'font-lock-keyword-face nil :foreground "DarkGoldenrod3")
+  ;; (set-face-attribute 'font-lock-string-face nil :foreground "olive drab")
+  ;; (set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
+  ;; (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
+  ;; (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
+  ;; (set-face-attribute 'org-block nil :foreground "burlywood3"
+  ;; 		    :background "black")
+  ;; (set-face-attribute 'secondary-selection nil :background "black")
+
+
+  ;; (set-face-attribute 'isearch nil :background "midnight blue" :weight 'extra-bold :foreground "yellow")
+  ;; (set-face-attribute 'lazy-highlight nil :background "midnight blue" :foreground "white")
+  ;; (set-face-attribute 'show-paren-match nil :background nil :foreground "lime green" :weight 'extra-bold)
 #+END_SRC
 
 ** Font
@@ -236,22 +238,24 @@
 	(lambda () (concat
 		    "\n"
 		    (propertize "┌─["
-				'face `(:foreground "green"))
+				'face `(:foreground "#98be65"))
 		    (propertize (user-login-name)
-				'face `(:foreground "DarkGoldenrod3"))
+				'face `(:foreground "#ECBE7B"))
 		    (propertize "]──["
-				'face `(:foreground "green"))
+				'face `(:foreground "#98be65"))
 		    (propertize (format-time-string "%H:%M" (current-time))
-				'face `(:foreground "olive drab"))
+				'face `(:foreground "#ff6c6b"))
 		    (propertize "]──["
-				'face `(:foreground "green"))
-		    (propertize (concat (abbreviate-file-name(eshell/pwd))) 'face `(:foreground "white"))
+				'face `(:foreground "#98be65"))
+		    (propertize (concat (abbreviate-file-name(eshell/pwd))) 'face `(:foreground "#c678dd"))
 		    (propertize "]\n"
-				'face `(:foreground "green"))
+				'face `(:foreground "#98be65"))
 		    (propertize "└─>"
-				'face `(:foreground "green"))
+				'face `(:foreground "#98be65"))
 		    (propertize (if (= (user-uid) 0) " # " " $ ")
-				'face `(:foreground "green")))))
+				'face `(:
+					foreground "#98be65"
+  )))))
 
 #+END_SRC
 
@@ -530,16 +534,16 @@
 * Modeline
 ** Spaceline
 #+BEGIN_SRC emacs-lisp
-    (use-package spaceline
-      :ensure t
-      :config
-      (require 'spaceline-config)
-      (if (eq system-type 'darwin)
-	  (setq powerline-image-apple-rgb t))
-      (spaceline-spacemacs-theme)
-      (spaceline-toggle-minor-modes-off)
-      (spaceline-toggle-selection-info-off)
-      (add-hook 'window-setup-hook (lambda () (powerline-reset))))
+  (use-package spaceline
+    :ensure t
+    :config
+    (require 'spaceline-config)
+    (if (eq system-type 'darwin)
+	(setq powerline-image-apple-rgb t))
+    (spaceline-spacemacs-theme)
+    (spaceline-toggle-minor-modes-off)
+    (spaceline-toggle-selection-info-off)
+    (add-hook 'window-setup-hook (lambda () (powerline-reset))))
 #+END_SRC
 
 ** Colored & Shortened VC
