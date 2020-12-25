@@ -385,6 +385,19 @@
 #+BEGIN_SRC emacs-lisp
   (if (eq system-type 'windows-nt)
       (set-variable 'grep-command "findstr -s -n -i -l "))
+
+
+  (defun grep-under-cursor ()
+    (interactive)
+    (let* ((cur-word (thing-at-point 'word))
+	   (cmd (concat "findstr -s -n -i -l " cur-word " *.c *.h *.cpp")))
+      (grep cmd)))
+
+  (defun grep-function (function_name)
+    (interactive "sFunction to Grep: ")
+    (let ((cmd (concat "findstr -s -n -i -l " function_name "( " 
+		       "*.c *.h *.cpp")))
+      (grep cmd)))
 #+END_SRC
 
 ** Query Replace
@@ -470,6 +483,7 @@
   (setq dabbrev-upcase-means-case-search t)
 
   (define-key global-map "\t" 'dabbrev-expand)
+  (define-key minibuffer-local-map "\t" 'dabbrev-expand)
   (define-key global-map [S-tab] 'indent-for-tab-command)
   (define-key global-map [C-tab] 'indent-region)
 #+END_SRC
@@ -717,5 +731,3 @@
 
   (add-hook 'c-mode-common-hook 'rohan-c-hook)
 #+END_SRC
-
-
