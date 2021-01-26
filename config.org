@@ -34,7 +34,8 @@
     :bind
     (:map evil-normal-state-map
 	  ("J" . 'evil-forward-paragraph)
-	  ("K" . 'evil-backward-paragraph))
+	  ("K" . 'evil-backward-paragraph)
+	  ("U" . 'evil-redo))
     ("C-j" . 'evil-join))
 #+END_SRC
 
@@ -497,9 +498,9 @@
   (setq dabbrev-case-fold-search t)
   (setq dabbrev-upcase-means-case-search t)
 
-  (define-key global-map "\t" 'dabbrev-expand)
+  ; (define-key global-map "\t" 'dabbrev-expand)
   (define-key minibuffer-local-map "\t" 'dabbrev-expand)
-  (define-key global-map [S-tab] 'indent-for-tab-command)
+  ; (define-key global-map [S-tab] 'indent-for-tab-command)
   (define-key global-map [C-tab] 'indent-region)
 #+END_SRC
 
