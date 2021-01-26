@@ -30,7 +30,11 @@
     :ensure t
     :init
     (evil-mode 1)
-    (evil-set-undo-system 'undo-tree))
+    (evil-set-undo-system 'undo-tree)
+    :bind
+    (:map evil-normal-state-map
+	  ("J" . 'evil-forward-paragraph)
+	  ("K" . 'evil-backward-paragraph)))
 #+END_SRC
 
 ** Which Key
@@ -54,8 +58,8 @@
   (use-package browse-kill-ring
     :ensure t
     :after (evil)
-    :init
-    (global-set-key (kbd "M-y") 'browse-kill-ring))
+    :bind
+    ("M-y" . 'browse-kill-ring))
 #+END_SRC
 
 * Theme
