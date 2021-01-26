@@ -78,9 +78,6 @@
    '(avy-lead-face-0    ((t (:background "#293235" :foreground "#b1951d"))))
    '(avy-lead-face-1    ((t (:background "#293235" :foreground "#a31db1"))))
    '(avy-lead-face-2    ((t (:background "#293235" :foreground "#4f97d7")))))
-
-  (custom-theme-set-faces 'doom-one '(powerline-evil-base-face
-				      ((t (:foreground "green")))))
 #+END_SRC
 
 ** Font
