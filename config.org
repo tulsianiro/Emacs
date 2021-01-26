@@ -34,7 +34,8 @@
     :bind
     (:map evil-normal-state-map
 	  ("J" . 'evil-forward-paragraph)
-	  ("K" . 'evil-backward-paragraph)))
+	  ("K" . 'evil-backward-paragraph))
+    ("C-j" . 'evil-join))
 #+END_SRC
 
 ** Which Key
