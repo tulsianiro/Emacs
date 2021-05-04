@@ -108,7 +108,7 @@
 * Basic Settings
 ** Paren Mode
 #+BEGIN_SRC emacs-lisp
-(setq show-paren-mode 1)
+(show-paren-mode)
 #+END_SRC
 
 ** Disable Yes or No Prompts
